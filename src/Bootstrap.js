@@ -6,6 +6,8 @@ class Bootstrap extends React.Component {
     this.state = {
       username: '',
       password: '',
+      usernameIsOk: false,
+      passwordIsOk: false,
     }
   }
 
@@ -26,52 +28,75 @@ class Bootstrap extends React.Component {
   // const o = {['b'+'ar']:'123',[a]:'456'}
   // console.log(o) => {bar:'123',bbb:'456'}
 
+  //作法一
+  // handleSend = event => {
+  //   this.state.username === 'aaa'
+  //     ? this.setState({ usernameIsOk: true })
+  //     : this.setState({ usernameIsOk: false })
+  //   this.state.password === '123'
+  //     ? this.setState({ passwordIsOk: true })
+  //     : this.setState({ passwordOk: false })
+  // }
+
+  //作法二
+  handleSend = event => {
+    let usernameIsOk = false
+    let passwordIsOk = false
+
+    //記得賦值~~~~~~~~!!!!!!!!!!!~~~~~~~~~~~~!!!!!!!!!!!~~~~~~~~!!!!
+    if (this.state.username === 'aaa') usernameIsOk = !usernameIsOk
+    if (this.state.password === '123') passwordIsOk = !passwordIsOk
+
+    this.setState({ usernameIsOk, passwordIsOk })
+  }
+
   render() {
     return (
       <>
         <div className="container">
-          <form>
-            <div className="form-group">
-              <label htmlFor="exampleInputEmail1">Email address</label>
-              <input
-                type="text"
-                name="username"
-                className="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                placeholder="Enter email"
-                onChange={this.handleInput}
-              />
-              <small id="emailHelp" className="form-text text-muted">
-                We'll never share your email with anyone else.
-              </small>
-            </div>
-            <div className="form-group">
-              <label htmlFor="exampleInputPassword1">Password</label>
-              <input
-                type="password"
-                name="password"
-                className="form-control"
-                id="exampleInputPassword1"
-                placeholder="Password"
-                onChange={this.handleInput}
-              />
-            </div>
-            <div className="form-group form-check">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="exampleCheck1"
-              />
-              <label className="form-check-label" htmlFor="exampleCheck1">
-                Check me out
-              </label>
-            </div>
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-            <span style={{ color: 'red', fontSize: 50 }}>注意注意</span>
-          </form>
+          <div className="form-group">
+            <label htmlFor="exampleInputEmail1">Email address</label>
+            <input
+              type="text"
+              name="username"
+              className={`form-control ${
+                this.state.usernameIsOk ? 'is-valid' : 'is-invalid'
+              }`}
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+              onChange={this.handleInput}
+            />
+            <small id="emailHelp" className="form-text text-muted">
+              We'll never share your email with anyone else.
+            </small>
+          </div>
+          <div className="form-group">
+            <label htmlFor="exampleInputPassword1">Password</label>
+            <input
+              type="password"
+              name="password"
+              className={`form-control ${
+                this.state.passwordIsOk ? 'is-valid' : 'is-invalid'
+              }`}
+              placeholder="Password"
+              onChange={this.handleInput}
+            />
+          </div>
+          <div className="form-group form-check">
+            <input type="checkbox" className="form-check-input" />
+            <label className="form-check-label" htmlFor="exampleCheck1">
+              Check me out
+            </label>
+          </div>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              this.handleSend()
+            }}
+          >
+            Submit
+          </button>
+          <span style={{ color: 'red', fontSize: 50 }}>注意注意</span>
         </div>
       </>
     )

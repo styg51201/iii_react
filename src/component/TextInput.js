@@ -1,14 +1,15 @@
 import React from 'react'
 
 class TextInput extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       name: '',
     }
+    console.log(this)
   }
 
-  //子層onClick事件綁定 從父層傳來的func 參數帶入要傳給父層的值
+  //子層onClick事件綁定 執行從父層拿來的func 帶入參數 更改父層的state
   render() {
     return (
       <>

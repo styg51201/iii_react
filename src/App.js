@@ -1,5 +1,5 @@
 import React from 'react'
-import PtoC from './PtoC'
+import BootstrapF from './BootstrapF'
 
 class App extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <PtoC />
+        <BootstrapF />
       </>
     )
   }

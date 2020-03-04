@@ -13,8 +13,9 @@ class CtoP extends React.Component {
 
   //React 只有單向傳輸 父->子
   //若是要子->父 需要用迂迴的方式 請看以下
-  //屬性設為是一個func (執行setState) 給子層
-  //子層那邊使用props 取得此func 再把欲傳送的值 帶進參數 回傳回來
+  //屬性設為是一個func (夾帶自己的this.setState) 給子層去執行
+  //子層則帶入參數 更改父層的state
+  //而父層就可以透過 state 取得 子層給的值
 
   render() {
     return (
