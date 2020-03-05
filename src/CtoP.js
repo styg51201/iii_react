@@ -20,11 +20,7 @@ class CtoP extends React.Component {
   render() {
     return (
       <>
-        <TextInput
-          send={text => {
-            this.setState({ Cname: text })
-          }}
-        />
+        <TextInput send={text => this.setState({ Cname: text })} />
         <br />
         <h2>{this.state.Cname}</h2>
       </>

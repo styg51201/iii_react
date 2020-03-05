@@ -30,6 +30,9 @@ function Header(props) {
             <Link className="nav-item nav-link" to="/product">
               product
             </Link>
+            <Link className="nav-item nav-link" to="/member">
+              member
+            </Link>
           </div>
         </div>
       </nav>

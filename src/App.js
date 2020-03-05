@@ -1,5 +1,5 @@
 import React from 'react'
-import BootstrapF from './BootstrapF'
+import StudentRouter from './StudentRouter'
 
 class App extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <BootstrapF />
+        <StudentRouter />
       </>
     )
   }
