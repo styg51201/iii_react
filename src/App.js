@@ -1,5 +1,5 @@
 import React from 'react'
-import StudentRouter from './StudentRouter'
+import CartRouter from './CartRouter'
 
 class App extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <StudentRouter />
+        <CartRouter />
       </>
     )
   }
