@@ -8,16 +8,27 @@ function ProductList() {
     // 開啟載入指示
     setDataLoading(true)
 
-    const currentCart = JSON.parse(localStorage.getItem('cart')) || []
+    if (localStorage.getItem('cart')) {
+      const currentCart = JSON.parse(localStorage.getItem('cart'))
+      console.log('currentCart', currentCart)
+      const newCart = [...currentCart, value]
+      localStorage.setItem('cart', JSON.stringify(newCart))
+      setMycart(newCart)
+    } else {
+      localStorage.setItem('cart', JSON.stringify([value]))
+      setMycart(value)
+    }
 
-    console.log('currentCart', currentCart)
+    // const currentCart = JSON.parse(localStorage.getItem('cart')) || []
 
-    const newCart = [...currentCart, value]
-    localStorage.setItem('cart', JSON.stringify(newCart))
+    // console.log('currentCart', currentCart)
 
-    console.log('newCart', newCart)
-    // 設定資料
-    setMycart(newCart)
+    // const newCart = [...currentCart, value]
+    // localStorage.setItem('cart', JSON.stringify(newCart))
+
+    // console.log('newCart', newCart)
+    // // 設定資料
+    // setMycart(newCart)
   }
 
   // 一開始就會開始載入資料

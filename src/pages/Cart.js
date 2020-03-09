@@ -9,13 +9,13 @@ function Cart() {
     // 開啟載入指示
     setDataLoading(true)
 
-    const newCart = localStorage.getItem('cart') || []
-    localStorage.setItem('cart', newCart)
+    //localStorage 有紀錄 ,就取得並設定state
+    if (localStorage.getItem('cart')) {
+      const newCart = localStorage.getItem('cart')
 
-    console.log(JSON.parse(newCart))
-
-    // 設定資料
-    setMycart(JSON.parse(newCart))
+      //因為localStorage 是儲存文字 ,所以需先parse轉arr
+      setMycart(JSON.parse(newCart))
+    }
   }
 
   // 一開始就會開始載入資料
@@ -23,30 +23,35 @@ function Cart() {
     getCartFromLocalStorage()
   }, [])
 
-  // 每次mycart資料有變動就會3秒後關掉載入指示
+  // 每次mycart資料有變動
   useEffect(() => {
     setTimeout(() => {
       setDataLoading(false)
     }, 500)
-    console.log('mycart', mycart)
+
+    // console.log('mycart', mycart)
+
     let NewMycartDisplay = []
     // console.log('mycartDisplay', mycartDisplay)
 
     for (let i = 0; i < mycart.length; i++) {
       //尋找mycartDisplay中有沒有此mycart[i].id
+      //有找到會返回陣列成員的索引值
+      //沒找到會返回-1
       const index = NewMycartDisplay.findIndex(val => {
-        console.log('val', val)
+        // console.log('val', val)
         return val.id === mycart[i].id
       })
-      console.log(index)
+
+      // console.log(index)
       //有的話就數量+1
       //沒有的話就把項目加入，數量為1
       if (index !== -1) {
         NewMycartDisplay[index].amount += mycart[i].amount
       } else {
-        // console.log('mycart[i]', mycart[i])
+        console.log('mycart[i]', mycart[i])
         const newItem = { ...mycart[i] }
-        // console.log('newItem', newItem)
+        console.log('newItem', newItem)
         NewMycartDisplay = [...NewMycartDisplay, newItem]
       }
     }
