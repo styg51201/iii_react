@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import ServerCounter from './ServerCounter'
+import Count from './Count'
 import * as serviceWorker from './serviceWorker'
 
 // 導入所需模組與方法
@@ -54,7 +54,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <ServerCounter />
+    <Count />
   </Provider>,
   document.getElementById('root')
 )
